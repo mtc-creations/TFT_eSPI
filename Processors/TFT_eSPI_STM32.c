@@ -623,6 +623,12 @@ bool TFT_eSPI::initDMA(bool ctrl_cs)
 
   __HAL_LINKDMA(&spiHal, hdmatx, dmaHal);   // Attach DMA engine to SPI peripheral
 
+  // spiHal is initialised with only Instance set via INIT_TFT_DATA_BUS. Its State
+  // field therefore remains HAL_SPI_STATE_RESET (0x00). HAL_SPI_Transmit_DMA()
+  // returns HAL_BUSY immediately unless State == HAL_SPI_STATE_READY, so every
+  // DMA push silently transmits nothing. Force it ready here before first use.
+  spiHal.State = HAL_SPI_STATE_READY;
+
   return DMA_Enabled = true;
 }
 
