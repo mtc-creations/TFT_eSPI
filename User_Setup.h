@@ -74,8 +74,8 @@
 // For ST7735, ST7789 and ILI9341 ONLY, define the colour order IF the blue and red are swapped on your display
 // Try ONE option at a time to find the correct colour order for your display
 
-//  #define TFT_RGB_ORDER TFT_RGB  // Colour order Red-Green-Blue
-//  #define TFT_RGB_ORDER TFT_BGR  // Colour order Blue-Green-Red
+// #define TFT_RGB_ORDER TFT_RGB // Colour order Red-Green-Blue
+#define TFT_RGB_ORDER TFT_BGR // Colour order Blue-Green-Red
 
 // For M5Stack ESP32 module with integrated ILI9341 display ONLY, remove // in line below
 
@@ -350,10 +350,11 @@
 // With a ST7735 display more than 27MHz may not work (spurious pixels and lines)
 // With an ILI9163 display 27 MHz works OK.
 
-// TODO: spi frequency is low at 1mhz while we're using jumper wires
-#define SPI_FREQUENCY 1000000
+// TODO: spi frequency is low at 10mhz while we're using jumper wires
+// improving spi frequency makes the rendering much faster
+// #define SPI_FREQUENCY 1000000
 // #define SPI_FREQUENCY   5000000
-// #define SPI_FREQUENCY  10000000
+#define SPI_FREQUENCY 10000000
 // #define SPI_FREQUENCY  20000000
 // #define SPI_FREQUENCY 27000000
 // #define SPI_FREQUENCY  40000000
@@ -361,7 +362,7 @@
 // #define SPI_FREQUENCY  80000000
 
 // Optional reduced SPI frequency for reading TFT
-#define SPI_READ_FREQUENCY 1000000
+#define SPI_READ_FREQUENCY 10000000
 
 // The XPT2046 requires a lower SPI clock rate of 2.5MHz so we define that here:
 #define SPI_TOUCH_FREQUENCY 2500000
