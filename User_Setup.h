@@ -25,7 +25,7 @@
 
 // Defining the STM32 board allows the library to optimise the performance
 // for UNO compatible "MCUfriend" style shields
-#define NUCLEO_64_TFT
+// #define NUCLEO_64_TFT
 // #define NUCLEO_144_TFT
 
 // STM32 8-bit parallel only:
@@ -122,15 +122,6 @@
 // Section 2. Define the pins that are used to interface with the display here
 //
 // ##################################################################################
-
-// If a backlight control signal is available then define the TFT_BL pin in Section 2
-// below. The backlight will be turned ON when tft.begin() is called, but the library
-// needs to know if the LEDs are ON with the pin HIGH or LOW. If the LEDs are to be
-// driven with a PWM signal or turned OFF/ON then this must be handled by the user
-// sketch. e.g. with digitalWrite(TFT_BL, LOW);
-
-#define TFT_BL PB4            // LED back-light control pin
-#define TFT_BACKLIGHT_ON HIGH // Level to turn ON back-light (HIGH or LOW)
 
 // We must use hardware SPI, a minimum of 3 GPIO pins is needed.
 // Typical setup for ESP8266 NodeMCU ESP-12 is :
@@ -270,7 +261,6 @@
 #define TFT_SPI_PORT 1 // SPI port 1 maximum clock rate is 55MHz
 #define TFT_MOSI PA7
 #define TFT_MISO PA6
-// TODO: this pin uses the user LED on a nucleo board which limits speed
 #define TFT_SCLK PA5
 
 // #define TFT_SPI_PORT 2 // SPI port 2 maximum clock rate is 27MHz
@@ -283,9 +273,18 @@
 // #define TFT_DC   D6 // Data Command control pin to TFT DC (may be labelled RS = Register Select)
 // #define TFT_RST  D7 // Reset pin to TFT RST (or RESET)
 // OR alternatively, we can use STM32 port reference names PXnn
-#define TFT_CS PB10 // Nucleo-F767ZI equivalent of D5
-#define TFT_DC PA8  // Nucleo-F767ZI equivalent of D6
-#define TFT_RST PA9 // Nucleo-F767ZI equivalent of D7
+#define TFT_RST PC4
+#define TFT_DC PC5
+#define TFT_CS PB0
+
+// If a backlight control signal is available then define the TFT_BL pin in Section 2
+// below. The backlight will be turned ON when tft.begin() is called, but the library
+// needs to know if the LEDs are ON with the pin HIGH or LOW. If the LEDs are to be
+// driven with a PWM signal or turned OFF/ON then this must be handled by the user
+// sketch. e.g. with digitalWrite(TFT_BL, LOW);
+
+#define TFT_BL PB1            // LED back-light control pin
+#define TFT_BACKLIGHT_ON HIGH // Level to turn ON back-light (HIGH or LOW)
 
 // #define TFT_RST  -1   // Set TFT_RST to -1 if the display RESET is connected to processor reset
 //  Use an Arduino pin for initial testing as connecting to processor reset
